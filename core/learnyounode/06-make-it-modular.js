@@ -1,16 +1,7 @@
-var fs = require('fs'),
-		path = require('path');
-		
-module.exports = function (mydir, extension, callback){ 
-		this.callback = function(){
-			fs.readdir(this.mydir, function(err, data){
-				if (err) throw err;
-				for(var i=0; i< data.length; i++){
-					if(path.extname(data[i]).replace('.', "") === this.extension){
-						console.log(data[i]);
-					}
-				}
-			});
-		}
-}
 var mymodule = require('./mymodule.js');
+
+mymodule(process.argv[2], process.argv[3], function(err, res){
+	if(err) throw err;
+	
+	console.log(res.join('\n'));
+});
